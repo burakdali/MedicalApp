@@ -14,7 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('patient_data', function (Blueprint $table) {
-            $table->id();
+            $table->foreignId('patient_id');
+            $table->foreign('patient_id')->on('users')->references('id')->cascadeOnDelete();
+            $table->double('height');
+            $table->double('weight');
+            $table->boolean('blood_pressure_problems');
+            $table->boolean('diabetes');
+            $table->boolean('respiratory_system_problems');
             $table->timestamps();
         });
     }

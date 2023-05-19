@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('article_attachments', function (Blueprint $table) {
-            $table->id();
+            $table->foreignId('article_id');
+            $table->foreign('article_id')->on('articles')->references('id')->cascadeOnDelete();
+            $table->string('title', 100);
+            $table->string('file');
             $table->timestamps();
         });
     }

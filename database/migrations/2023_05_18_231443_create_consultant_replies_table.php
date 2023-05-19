@@ -14,7 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('consultant_replies', function (Blueprint $table) {
-            $table->id();
+            $table->foreignId('consultant_id');
+            $table->foreign('consultant_id')->on('consultants')->references('id')->cascadeOnDelete();
+            $table->foreignId('doctor_id');
+            $table->foreign('doctor_id')->on('users')->references('id')->cascadeOnDelete();
+            $table->string('content');
             $table->timestamps();
         });
     }

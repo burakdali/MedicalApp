@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('consultant_attachments', function (Blueprint $table) {
-            $table->id();
+            $table->foreignId('consultant_id');
+            $table->foreign('consultant_id')->on('consultants')->references('id')->cascadeOnDelete();
+            $table->string('title');
+            $table->string('file');
             $table->timestamps();
         });
     }

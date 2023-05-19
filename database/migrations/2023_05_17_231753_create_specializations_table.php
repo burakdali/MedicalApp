@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('specializations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('department_id');
+            $table->foreign('department_id')->on('departments')->references('id')->cascadeOnDelete();
+            $table->string('name');
             $table->timestamps();
         });
     }

@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreign('user_id')->on('users')->references('id')->cascadeOnDelete();
+            $table->string('title');
+            $table->json('body');
+            $table->boolean('is_visible');
             $table->timestamps();
         });
     }
